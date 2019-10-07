@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <application.version>${version}</application.version>
     </properties>
 
     <dependencies>
@@ -94,8 +95,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
     </build>
-
 </project>

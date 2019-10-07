@@ -6,6 +6,7 @@ import com.myretail.product.domain.ProductResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
@@ -20,19 +21,17 @@ public class ProductClient {
     private static final Logger log = LoggerFactory.getLogger(ProductClient.class);
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    private static final String PRODUCT_URL = "https://redsky.target.com/v2/pdp/tcin/%d?excludes=" +
-            "taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics," +
-            "question_answer_statistics,deep_red_labels,available_to_promise_network,circle_offers";
-
+    @Value("${product.endpoint}")
+    private String endpoint;
 
     public Product getProductById(Integer id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Product> entity = new HttpEntity<>(headers);
 
-        String url = String.format(PRODUCT_URL, id);
+        String url = String.format(endpoint, id);
         ResponseEntity<ProductResponse> responseEntity = null;
 
         try {

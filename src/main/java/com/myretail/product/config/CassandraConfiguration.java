@@ -10,10 +10,10 @@ import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
 public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
     @Value("${cassandra.key_space}")
-    String keySpace;
+    private String keySpace;
 
     @Value("${cassandra.contact.point}")
-    String contactPoint;
+    private String contactPoint;
 
     @Override
     protected String getKeyspaceName() {
