@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @RestController
 public class ProductController {
@@ -24,8 +25,8 @@ public class ProductController {
     }
 
     @PutMapping(path = "/products/{id}", consumes = "application/json")
-    String getProductDetails(@PathVariable Integer id,
-                             @RequestBody ProductDetail productDetail,
+    String putProductDetails(@PathVariable Integer id,
+                             @Valid @RequestBody ProductDetail productDetail,
                              HttpServletResponse response) {
         log.info("Incoming put request, id={}", id);
 

@@ -9,6 +9,7 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 @Table("product_detail")
+@ProductDetailConstraint
 public class ProductDetail {
 
     @PrimaryKey

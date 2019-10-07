@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @PropertySources({
-        @PropertySource(value = "classpath:application-${environment}.properties", ignoreResourceNotFound = true),
+        @PropertySource(value = "classpath:application-${environment:local}.properties", ignoreResourceNotFound = true),
         @PropertySource("classpath:default.properties")})
 public class ProductApplication {
 
