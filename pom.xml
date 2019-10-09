@@ -61,6 +61,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>co.elastic.apm</groupId>
+            <artifactId>apm-opentracing</artifactId>
+            <version>1.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>

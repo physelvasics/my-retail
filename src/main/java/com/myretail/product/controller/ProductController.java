@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping(value = "/v1")
 public class ProductController {
 
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
@@ -19,9 +20,20 @@ public class ProductController {
     private ProductDetailService productDetailService;
 
     @GetMapping(path = "/products/{id}", produces = "application/json")
-    ProductDetail getProductDetails(@PathVariable Integer id) {
+    ProductDetail getProductDetails(@PathVariable Integer id, HttpServletResponse response) {
         log.info("Incoming get request, id={}", id);
-        return productDetailService.getProductDetail(id);
+
+        ProductDetail productDetail = null;
+        try{
+            productDetail = productDetailService.getProductDetail(id);
+            if(productDetail == null){
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+        }catch (Exception e){
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+
+        return productDetail;
     }
 
     @PutMapping(path = "/products/{id}", consumes = "application/json")

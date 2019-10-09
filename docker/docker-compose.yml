@@ -1,16 +1,66 @@
-version: '2.4'
+version: '2.1'
 services:
   cassandra:
-    image: cassandra:3.11.2
-    volumes:
-      - "./cassandra-init.sh:/cassandra-init.sh"
+    image: cassandra:latest
+    build: ./cassandra
+    container_name: cassandra
     command: "sh /cassandra-init.sh"
     ports:
       - "127.0.0.1:9042:9042"
+    healthcheck:
+      test: "/cassandra-health-check.sh"
+      interval: 60s
+      timeout: 10s
+      retries: 3
+
+  apmserver:
+    image: apmserver:latest
+    build: ./apmserver
+    container_name: apmserver
+    ports:
+      - "127.0.0.1:8200:8200"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
 
   product-api:
     image: product-api:latest
     ports:
-      -  "127.0.0.1:8080:8080"
+      - "80:8080"
     depends_on:
-      - cassandra
+      cassandra :
+        condition: service_healthy
+      apmserver:
+        condition: service_started
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9200']
+      interval: 10s
+      timeout: 50s
+      retries: 3
+    environment:
+      - node.name=elasticsearch
+      - discovery.seed_hosts=elasticsearch
+      - cluster.initial_master_nodes=elasticsearch
+      - cluster.name=docker-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+  kibana:
+    image: kibana:latest
+    build: ./kibana
+    ports:
+      - "127.0.0.1:5601:5601"
+    container_name: kibana
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5601']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      elasticsearch:
+        condition: service_healthy

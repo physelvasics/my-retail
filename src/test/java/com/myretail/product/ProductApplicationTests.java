@@ -27,7 +27,7 @@ public class ProductApplicationTests {
 	@Test
 	public void getProductDetail() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-				.get("/products/13860428")
+				.get("/v1/products/13860428")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -37,16 +37,25 @@ public class ProductApplicationTests {
 	@Test
 	public void getProductDetailInvalidRequest() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-				.get("/products/abcd")
+				.get("/v1/products/abcd")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isBadRequest());
 	}
 
 	@Test
+	public void getProductDetailNoData() throws Exception{
+		mvc.perform( MockMvcRequestBuilders
+				.get("/v1/products/12345")
+				.accept(MediaType.APPLICATION_JSON))
+				.andDo(print())
+				.andExpect(status().isNotFound());
+	}
+
+	@Test
 	public void putProductDetail() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-				.put("/products/13860428")
+				.put("/v1/products/13860428")
 				.content("{\"id\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":14.49,\"currency_code\":\"USD\"}}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())
@@ -57,7 +66,7 @@ public class ProductApplicationTests {
 	@Test
 	public void putProductDetailInvalidRequest() throws Exception{
 		mvc.perform( MockMvcRequestBuilders
-				.put("/products/13860428")
+				.put("/v1/products/13860428")
 				.content("{\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":14.49,\"currency_code\":\"USD\"}}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())
