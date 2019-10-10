@@ -7,7 +7,7 @@ Java 11, Spring Boot, Spock, Cassandra, Opentracing, Groovy, Maven, Jmeter, Dock
 ## Getting Started
 Follow the instructions to run the application on local machine using docker.
 
-###Install docker:
+### Install docker:
 
 ```
 For mac : https://docs.docker.com/docker-for-mac/install/
@@ -16,17 +16,17 @@ For Windows: https://docs.docker.com/docker-for-windows/install/
 > Change the docker preference to allocate at least 4GB memory and 4 CPUs, this is required for elasticsearch container to run.
 
 
-###Install maven:
+### Install maven:
 ```
 https://maven.apache.org/install.html
 ```
 
-###Install Openjdk11:
+### Install Openjdk11:
 ```
 https://openjdk.java.net/install/
 ```
 
-###Build and run:
+### Build and Run:
 
 ```
 mvn clean install
@@ -48,14 +48,14 @@ docker-compose up -d
 > ```
 
 
-###Swagger
+### Swagger
 All api endpoints are documented using swagger.
 
 [Local URL](http://localhost/swagger-ui.html)
 
 [Hosted URL](http://99.79.62.181/swagger-ui.html)
 
-###Elastic APM(Kibana):
+### Elastic APM(Kibana):
 This is part of Opentracing, we can monitor the request, response and system latency at each integration points.
 > Note: Click on the APM link from the left pane. 
 
@@ -63,7 +63,7 @@ This is part of Opentracing, we can monitor the request, response and system lat
 
 [Hosted URL](http://99.79.62.181:5601)
  
-###Further Reading:
+### Further Reading:
 * [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Application Framework
 * [Maven](https://maven.apache.org/developers/index.html) - Dependency & Build
 * [Groovy](http://groovy-lang.org/documentation.html) - Unit Testing
