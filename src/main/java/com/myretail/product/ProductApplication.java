@@ -7,11 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @PropertySources({
         @PropertySource(value = "classpath:application-${environment:local}.properties", ignoreResourceNotFound = true),
-        @PropertySource("classpath:default.properties")})
+        @PropertySource("classpath:default.properties")
+})
 public class ProductApplication {
 
     public static void main(String[] args) {
@@ -21,5 +23,10 @@ public class ProductApplication {
     @Bean
     public Tracer tracer() {
         return new ElasticApmTracer();
+    }
+
+    @Bean
+    RestTemplate getRestTemplate() {
+        return new RestTemplate();
     }
 }

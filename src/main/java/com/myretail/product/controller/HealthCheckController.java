@@ -16,6 +16,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This health check controller serves system's integration status information. This information will used by
+ * the consumers.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 @RestController
 @RequestMapping("/")
 public class HealthCheckController {
@@ -29,6 +35,11 @@ public class HealthCheckController {
     @Value("${product.endpoint}")
     private String endpoint;
 
+    /**
+     * This method will run health check on cassandra and product service.
+     *
+     * @return List<HealthCheckResponse> contains health check status of each integration item.
+     */
     @GetMapping(value = "/health-check", produces = "application/json")
     List<HealthCheckResponse> getHealthCheck() {
         List<HealthCheckResponse> responseList = new ArrayList<>();
@@ -55,7 +66,7 @@ public class HealthCheckController {
         try {
             //Using the provided end point as health check endpoint of given service
             ResponseEntity<ProductResponse> responseEntity = restTemplate.exchange(String.format(endpoint, 13860429), HttpMethod.GET, null, ProductResponse.class);
-            if(responseEntity.getStatusCode().is5xxServerError()){
+            if (responseEntity.getStatusCode().is5xxServerError()) {
                 apiHealthCheckResponse.setStatus("Failure");
                 apiHealthCheckResponse.setDetails("Api Returned 500 response code");
             } else {
@@ -68,6 +79,8 @@ public class HealthCheckController {
         } finally {
             responseList.add(apiHealthCheckResponse);
         }
+
+        //TODO: Need to make consolidated status which represent overall system health.
 
         return responseList;
     }

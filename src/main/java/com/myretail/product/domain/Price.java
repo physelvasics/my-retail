@@ -1,13 +1,12 @@
 package com.myretail.product.domain;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
 
-public class Price  implements Serializable{
+
+public class Price implements Serializable {
 
     private Double value;
 

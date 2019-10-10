@@ -1,6 +1,6 @@
 package com.myretail.product.service
 
-import com.myretail.product.config.ProductClient
+import com.myretail.product.config.ProductRestClient
 import com.myretail.product.dao.ProductDetailRepo
 import com.myretail.product.domain.Item
 import com.myretail.product.domain.Product
@@ -11,11 +11,11 @@ import spock.lang.Specification
 class ProductDetailServiceSpec extends Specification{
 
     ProductDetailRepo productDetailRepo = Mock(ProductDetailRepo)
-    ProductClient productClient = Mock(ProductClient)
+    ProductRestClient productClient = Mock(ProductRestClient)
 
     ProductDetailService productDetailService = new ProductDetailService(
             productDetailRepo: productDetailRepo,
-            productClient: productClient
+            productRestClient: productClient
     )
 
     def "Product detail name not available in database"(){

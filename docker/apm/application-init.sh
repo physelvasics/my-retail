@@ -6,4 +6,5 @@ java -javaagent:/opt/app/elastic-apm-agent.jar \
      -Delastic.apm.secret_token= \
      -Delastic.apm.application_packages=com.myretail.product \
      -Denvironment=docker \
+     -Dlog.location=/tmp \
      -jar /opt/app/product-api.jar

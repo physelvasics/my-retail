@@ -4,6 +4,11 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
+/**
+ * This is a constraint used to validate ProductDetail bean.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ProductDetailConstraintValidator.class)

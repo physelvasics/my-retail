@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * This heartbeat controller serves system's metadata and it will be used by deployment services.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 @RestController
 @RequestMapping("/")
 public class HeartBeatController {
@@ -17,9 +22,14 @@ public class HeartBeatController {
     @Value("${application.version}")
     String version;
 
+    /**
+     * This method returns system's metadata like application name and version.
+     *
+     * @return HeartBeatResponse
+     */
     @GetMapping(value = "/heartbeat", produces = "application/json")
-    HeartBeatResponse getHeartBeat(){
-        HeartBeatResponse response = new HeartBeatResponse(name,version);
+    HeartBeatResponse getHeartBeat() {
+        HeartBeatResponse response = new HeartBeatResponse(name, version);
         return response;
     }
 

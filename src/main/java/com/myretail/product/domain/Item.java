@@ -3,6 +3,9 @@ package com.myretail.product.domain;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+/**
+ * This represents item details on Product.
+ */
 public class Item {
 
     private ProductDescription productDescription;

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.myretail</groupId>
     <artifactId>product</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>product</name>
     <description>myretail product information system</description>
 
@@ -107,6 +107,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Spec.java</include>
+                    </includes>
                     <excludes>
                         <!--Excluding the integration test as it need real cassandra running-->
                         <exclude>**/ProductApplicationTests.java</exclude>

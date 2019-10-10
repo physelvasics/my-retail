@@ -6,10 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
 
+/**
+ * This configuration class produces CassandraClusterFactoryBean.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 @Configuration
 public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
-    @Value("${cassandra.key_space}")
+    @Value("${cassandra.keyspace}")
     private String keySpace;
 
     @Value("${cassandra.contact.point}")

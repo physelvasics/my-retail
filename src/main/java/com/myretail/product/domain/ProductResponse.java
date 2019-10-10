@@ -1,5 +1,10 @@
 package com.myretail.product.domain;
 
+/**
+ * This domain represents response from product service.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 public class ProductResponse {
 
     private Product product;

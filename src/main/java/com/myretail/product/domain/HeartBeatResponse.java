@@ -1,16 +1,26 @@
 package com.myretail.product.domain;
 
-import java.io.Serializable;
-
+/**
+ * This domain objects represents heart beat response of product api.
+ *
+ * @author Selvaraj Karuppusamy
+ */
 public class HeartBeatResponse {
+
+    /**
+     * Represents application name(ex: my-retail)
+     */
     private String appName;
+
+    /**
+     * Represents current application version(ex: 1.0.0).
+     */
     private String version;
 
-    public HeartBeatResponse(){
-
+    public HeartBeatResponse() {
     }
 
-    public HeartBeatResponse(String appName, String version){
+    public HeartBeatResponse(String appName, String version) {
         this.appName = appName;
         this.version = version;
     }
