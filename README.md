@@ -1,7 +1,7 @@
 # my-retail Product Detail Service
 This repository was created part of Target case study.
 
-##Technology Stack:
+## Technology Stack:
 Java 11, Spring Boot, Spock, Cassandra, Opentracing, Groovy, Maven, Jmeter, Docker, Swagger2, AWS
 
 ## Getting Started
